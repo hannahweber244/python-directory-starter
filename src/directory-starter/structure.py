@@ -22,6 +22,9 @@ class StructureBuilder:
             "main.py",
             "LICENSE",
             "setup.py",
+            "setup.cfg",
+            "pyproject.toml",
+            "MANIFEST.in",
             "requirements.txt",
         ]
 
@@ -42,10 +45,10 @@ class StructureBuilder:
                 text_file = f"{file.strip('.').split('.')[0]}_text.txt"
                 try:
                     text = open(os.path.join("data", "raw", text_file), "r").read()
-                    f = open(os.path.join(cdir, file), "w+")
                 except Exception as e:
                     logger.warning(f"reading text for {file} failed with error: {e}")
                     text = ""
+                f = open(os.path.join(cdir, file), "w+")
                 f.write(text)
                 f.close()
 

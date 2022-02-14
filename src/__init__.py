@@ -1,1 +1,0 @@
-from src.structure import StructureBuilder
