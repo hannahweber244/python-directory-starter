@@ -1,5 +1,10 @@
 from src import StructureBuilder
 
-if __name__ == "__main__":
+
+def main():
     b = StructureBuilder()
     b.initialize_structure()
+
+
+if __name__ == "__main__":
+    main()
