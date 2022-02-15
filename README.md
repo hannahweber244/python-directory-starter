@@ -20,8 +20,12 @@ The following structure is created when using the tool:
 - .gitignore
 - LICENSE
 - main.py
-- requirements.txt
+- MANIFEST.in
+- pyproject.toml
 - README.md
+- requirements.txt
+- setup.cfg
+- setup.py
 ```
 
 ## How it works
