@@ -1,1 +1,3 @@
-graft data/raw
+graft src/directory-starter/data
+include *_text.txt
+include */data/*

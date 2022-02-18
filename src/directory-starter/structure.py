@@ -26,6 +26,7 @@ class StructureBuilder:
             "pyproject.toml",
             "MANIFEST.in",
             "requirements.txt",
+            ".env",
         ]
 
     def initialize_structure(self):
@@ -37,16 +38,18 @@ class StructureBuilder:
                 os.makedirs(os.path.join(cdir, directory))
                 f = open(os.path.join(cdir, directory, ".gitadd"), "w+")
                 f.close()
-
+        file_dir = os.path.dirname(os.path.realpath(__file__))
         for file in self._file_list:
             if os.path.exists(os.path.join(cdir, file)):
                 continue
             else:
-                text_file = f"{file.strip('.').split('.')[0]}_text.txt"
+                text_file = f"{file.strip('.').split('.')[0]}_text.py"
                 try:
-                    text = open(os.path.join("data", "raw", text_file), "r").read()
-                except Exception as e:
-                    logger.warning(f"reading text for {file} failed with error: {e}")
+                    logger.debug("reading text")
+                    text = open(os.path.join(file_dir,text_file), "r").read()
+                    text = text.strip('"""').strip("\n")
+                except Exception:
+                    logger.info(f"no default text set for {file}")
                     text = ""
                 f = open(os.path.join(cdir, file), "w+")
                 f.write(text)
