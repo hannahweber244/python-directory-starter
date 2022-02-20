@@ -3,6 +3,10 @@ import os
 
 
 class StructureBuilder:
+    """
+        includes functions, filenames and directorynames 
+        to create 
+    """
     def __init__(self):
         self._directory_list = [
             "src",
@@ -57,24 +61,44 @@ class StructureBuilder:
 
     @property
     def directory_list(self):
+        """getter method for list which contains all directories, that should be created.
+
+        Returns:
+            list: list of directories
+        """
         return self._directory_list
 
     @directory_list.setter
     def directory_list(self, dl):
+        """setter method for directory list
+
+        Args:
+            dl (list): new list of directories to be created 
+        """
         self._directory_list = dl
 
     @directory_list.deleter
     def directory_list(self):
+        """deleter of directory list
+        """
         del self._directory_list
 
     @property
     def file_list(self):
+        """ getter method for list of files to create"""
         return self._file_list
 
     @file_list.setter
-    def file_list(self, fl):
+    def file_list(self, fl:list):
+        """setter method for list of files to create
+
+        Args:
+            fl (list): new lit of files to create when calling class
+        """
         self._file_list = fl
 
     @file_list.deleter
     def file_list(self):
+        """delter method for list of files to create
+        """
         del self._file_list
