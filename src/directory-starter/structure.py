@@ -64,6 +64,39 @@ class StructureBuilder:
                 f.write(text)
                 f.close()
 
+    @staticmethod
+    def mirror_project_structure(project_path: str) -> list:
+        """reads the structure of a project on the main and second level of directories  
+
+        Args:
+            project_path (str): path to project to copy structure from 
+
+        Returns:
+            list, list: lists containing main level files and directories 
+        """
+        directories = []
+        files = []
+        important_files = ["__init__.py", "__main__.py"]
+
+        if os.path.exists(project_path):
+            included = os.listdir(project_path)
+
+            # reading main level directories and files
+            files = [os.path.isfile(os.path.join(project_path),f) for f in included]
+            directories = [os.path.isdir(os.path.join(project_path),d) for d in included]
+
+            # iteration over every directory to read files and directory beneath
+            for directory in directories:
+                dir_ = os.path.join(project_path, directory)
+                included = os.listdir(dir_)
+                for k in included:
+                    if os.path.isdir(os.path.join(dir_, k)):
+                        directories.append(f"{directory}/{k}")
+                    elif os.path.isfile(os.path.join(dir_, k)) and k in important_files:
+                        files.append(f"{directory}/{k}")
+
+        return directories, files
+
     @property
     def directory_list(self):
         """getter method for list which contains all directories, that should be created.

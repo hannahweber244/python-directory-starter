@@ -43,6 +43,6 @@ pip install -i https://test.pypi.org/simple/ directory-starter
 
 Once the installation is finished, you can initialize the above described directory structures using:
 ```
-python -m directory-starter -mode=<STRUCTURETYPE>
+python -m directory-starter -mode=<STRUCTURETYPE> -mirror=<PATH-TO-YOUR-PROJECT>
 ```
-By default the `minimal` mode is created.
+By default the `minimal` mode is used.

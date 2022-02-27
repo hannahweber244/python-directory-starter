@@ -1,9 +1,15 @@
 from .structure import StructureBuilder
+import os
+import logging as logger
 
 
 def main(args):
     """main function to initialize directory structure"""
     mode = args.mode
+    mirror_directory = args.mirror_from
+
+    if mirror_directory is not None:
+        mode = None
 
     builder = StructureBuilder()
 
@@ -75,9 +81,13 @@ def main(args):
             "LICENSE",
             ".env"
         ]
+    elif os.path.exists(mirror_directory):
+        mirror_directories, mirror_files =  builder.mirror_project_structure(mirror_directory)
+        builder.directory_list = mirror_directories
+        builder.file_list = mirror_files
     else:
         raise ValueError(
-            "Unknown mode specification, try 'minimal', 'medium', 'large' or 'packaging'"
+            "Unknown mode specification, try 'minimal', 'medium', 'large' or 'packaging' or pass a valid directory path to read a structure from"
         )
-
+    # initialize directory structure
     builder.initialize_structure()
