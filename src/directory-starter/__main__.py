@@ -1,4 +1,10 @@
+import argparse as arg
 from .directory_starter import main
 
 if __name__ == "__main__":
-    main()
+    parser = arg.ArgumentParser(description="Process package specific inputs")
+
+    parser.add_argument("--structure-mode", "-mode", default = "minimal")
+    args = parser.parse_args()
+    
+    main(args)

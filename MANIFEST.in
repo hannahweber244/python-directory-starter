@@ -1,3 +1,2 @@
 graft src/directory-starter/data
-include *_text.txt
-include */data/*
+include *_text.py

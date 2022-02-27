@@ -4,9 +4,10 @@ import os
 
 class StructureBuilder:
     """
-        includes functions, filenames and directorynames 
-        to create 
+    includes functions, filenames and directorynames
+    to create
     """
+
     def __init__(self):
         self._directory_list = [
             "src",
@@ -47,10 +48,14 @@ class StructureBuilder:
             if os.path.exists(os.path.join(cdir, file)):
                 continue
             else:
-                text_file = f"{file.strip('.').split('.')[0]}_text.py"
+                text_file = (
+                    f"{file.strip('.').split('.')[0]}_text.py"
+                    if not file.startswith("setup")
+                    else f"{file}_text.py"
+                )
                 try:
                     logger.debug("reading text")
-                    text = open(os.path.join(file_dir,text_file), "r").read()
+                    text = open(os.path.join(file_dir, text_file), "r").read()
                     text = text.strip('"""').strip("\n")
                 except Exception:
                     logger.info(f"no default text set for {file}")
@@ -73,23 +78,22 @@ class StructureBuilder:
         """setter method for directory list
 
         Args:
-            dl (list): new list of directories to be created 
+            dl (list): new list of directories to be created
         """
         self._directory_list = dl
 
     @directory_list.deleter
     def directory_list(self):
-        """deleter of directory list
-        """
+        """deleter of directory list"""
         del self._directory_list
 
     @property
     def file_list(self):
-        """ getter method for list of files to create"""
+        """getter method for list of files to create"""
         return self._file_list
 
     @file_list.setter
-    def file_list(self, fl:list):
+    def file_list(self, fl: list):
         """setter method for list of files to create
 
         Args:
@@ -99,6 +103,5 @@ class StructureBuilder:
 
     @file_list.deleter
     def file_list(self):
-        """delter method for list of files to create
-        """
+        """delter method for list of files to create"""
         del self._file_list

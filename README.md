@@ -4,7 +4,9 @@
   - [How to use it](#how-to-use-it)
 
 ## Overview
-directory-starter is a little Tool to setup the [cookie cutter data science project structure](https://drivendata.github.io/cookiecutter-data-science/) within a few seconds. In this version it also creates basic packaging files (e.g. `MANIFEST.in`, `setup.cfg`).
+`directory-starter` enables you to start coding immediately, without wasting your time by creating project files and folders first.
+
+In this version 4 types of directory structures can be initialized: `minimal`, `medium` and `large` (which refer directly to the structure proposed in the [Cookie Cutter Data Science Template](https://drivendata.github.io/cookiecutter-data-science/)) and `packaging`, which creates basic files to distribute your application as a python package. 
 
 The following structure is created when using the tool:
 ```
@@ -39,8 +41,8 @@ To install it run
 pip install -i https://test.pypi.org/simple/ directory-starter
 ```
 
-Once the installation is finished, you can initialize the above described directory structure using:
+Once the installation is finished, you can initialize the above described directory structures using:
 ```
-python -m directory-starter
+python -m directory-starter -mode=<STRUCTURETYPE>
 ```
-
+By default the `minimal` mode is created.
