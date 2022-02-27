@@ -1,6 +1,6 @@
-from .structure import StructureBuilder
 import os
-import logging as logger
+
+from .structure import StructureBuilder
 
 
 def main(args):
@@ -40,7 +40,7 @@ def main(args):
             "requirements.txt",
             "LICENSE",
             "src/__init__.py",
-            ".env"
+            ".env",
         ]
 
     elif mode == "packaging":
@@ -79,10 +79,12 @@ def main(args):
             "main.py",
             "requirements.txt",
             "LICENSE",
-            ".env"
+            ".env",
         ]
     elif os.path.exists(mirror_directory):
-        mirror_directories, mirror_files =  builder.mirror_project_structure(mirror_directory)
+        mirror_directories, mirror_files = builder.mirror_project_structure(
+            mirror_directory
+        )
         builder.directory_list = mirror_directories
         builder.file_list = mirror_files
     else:
