@@ -77,20 +77,19 @@ class StructureBuilder:
         directories = []
         files = []
         important_files = ["__init__.py", "__main__.py"]
-
         if os.path.exists(project_path):
             included = os.listdir(project_path)
 
             # reading main level directories and files
-            files = [os.path.isfile(os.path.join(project_path),f) for f in included]
-            directories = [os.path.isdir(os.path.join(project_path),d) for d in included]
-
+            files = [f for f in included if os.path.isfile(os.path.join(project_path,f))]
+            directories = [d for d in included if os.path.isdir(os.path.join(project_path,d)) and not d.startswith(".ve") and not d.endswith("env") and not d.endswith(".egg-info")]
+            
             # iteration over every directory to read files and directory beneath
             for directory in directories:
                 dir_ = os.path.join(project_path, directory)
                 included = os.listdir(dir_)
                 for k in included:
-                    if os.path.isdir(os.path.join(dir_, k)):
+                    if os.path.isdir(os.path.join(dir_, k)) and not k.startswith(".ve") and not k.endswith("env") and not k.endswith(".egg-info"):
                         directories.append(f"{directory}/{k}")
                     elif os.path.isfile(os.path.join(dir_, k)) and k in important_files:
                         files.append(f"{directory}/{k}")
