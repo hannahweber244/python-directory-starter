@@ -5,7 +5,7 @@ from .structure import StructureBuilder
 
 def main(args):
     """main function to initialize directory structure"""
-    mode = args.mode
+    mode = args.structure_mode
     mirror_directory = args.mirror_from
 
     if mirror_directory is not None:
