@@ -21,6 +21,7 @@ def main(args):
             "requirements.txt",
             "LICENSE",
             "src/__init__.py",
+            ".env"
         ]
 
     elif mode == "medium":
@@ -72,6 +73,7 @@ def main(args):
             "src/features",
             "src/models",
             "src/visualization",
+            "tests",
         ]
         builder.file_list = [
             "README.md",
@@ -80,6 +82,7 @@ def main(args):
             "requirements.txt",
             "LICENSE",
             ".env",
+            ".gitignore",
         ]
     elif os.path.exists(mirror_directory):
         mirror_directories, mirror_files = builder.mirror_project_structure(
